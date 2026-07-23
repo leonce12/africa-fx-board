@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Africa FX Board</title>
+<meta name="description" content="Daily USD, EUR and GBP exchange rates for African currencies — automated, free, updated daily.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #080B10;
+    --panel: #0F141B;
+    --panel-raised: #131A23;
+    --rule: #1C2430;
+    --rule-faint: #141A23;
+    --text: #D8DEE6;
+    --muted: #66707F;
+    --amber: #D9A544;
+    --up: #35B08B;
+    --down: #E2665C;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; }
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+    line-height: 1.5;
+    min-height: 100vh;
+    font-size: 14px;
+  }
+  ::selection{ background: var(--amber); color: #080B10; }
+  a { color: inherit; }
+
+  .display{ font-family: 'Space Grotesk', sans-serif; }
+
+  /* ---------- Masthead ---------- */
+  header.masthead{
+    border-bottom: 1px solid var(--rule);
+    padding: 2rem 1.5rem 1.4rem;
+    background: radial-gradient(ellipse at top left, rgba(217,165,68,0.06), transparent 55%), var(--bg);
+  }
+  .masthead-inner{ max-width: 1040px; margin: 0 auto; }
+  .eyebrow{
+    font-size: 0.68rem; text-transform: uppercase; color: var(--up);
+    letter-spacing: 0.16em; margin-bottom: 0.7rem;
+  }
+  h1.display{
+    font-size: clamp(1.6rem, 4vw, 2.3rem);
+    font-weight: 700; margin: 0 0 0.5rem; letter-spacing: -0.01em;
+  }
+  h1.display .amber{ color: var(--amber); }
+  .dek{ color: var(--muted); font-size: 0.85rem; max-width: 64ch; margin: 0 0 1.1rem; }
+  .meta-row{
+    display:flex; flex-wrap: wrap; gap: 0.5rem 1.3rem;
+    font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .meta-row .dot{ color: var(--rule); }
+  #live-dot{
+    display:inline-block; width:6px; height:6px; border-radius:50%;
+    background: var(--up); margin-right:0.4em; vertical-align:middle;
+    box-shadow: 0 0 6px var(--up);
+  }
+
+  /* ---------- Movers strip ---------- */
+  .movers{
+    max-width: 1040px; margin: 1.3rem auto 0; padding: 0 1.5rem;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.6rem;
+  }
+  .mover-card{
+    background: var(--panel); border: 1px solid var(--rule); padding: 0.65rem 0.8rem;
+  }
+  .mover-card .label{ font-size: 0.62rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .mover-card .code{ font-size: 0.95rem; margin: 0.2rem 0; }
+  .mover-card .pct.up{ color: var(--up); }
+  .mover-card .pct.down{ color: var(--down); }
+
+  /* ---------- Controls ---------- */
+  .controls{
+    max-width: 1040px; margin: 0 auto; padding: 1.2rem 1.5rem 0;
+    display:flex; gap: 0.75rem; flex-wrap: wrap; align-items:center;
+  }
+  input#search{
+    flex: 1 1 220px; background: var(--panel); border: 1px solid var(--rule);
+    color: var(--text); padding: 0.6rem 0.8rem; font-size: 0.82rem; outline: none;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  input#search::placeholder{ color: var(--muted); }
+  input#search:focus{ border-color: var(--amber); }
+  select#sort{
+    background: var(--panel); border: 1px solid var(--rule); color: var(--text);
+    padding: 0.6rem 0.8rem; font-size: 0.78rem; font-family: 'IBM Plex Mono', monospace;
+  }
+  .count-badge{ font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
+
+  /* ---------- Board ---------- */
+  main{ max-width: 1040px; margin: 0 auto; padding: 1.2rem 1.5rem 3.5rem; }
+
+  .board-head{
+    display:grid;
+    grid-template-columns: 2.3fr 1fr 1fr 1fr 0.8fr 1.1fr;
+    gap: 0.5rem;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.64rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em;
+    border-bottom: 1px solid var(--rule);
+  }
+  .row{
+    display:grid;
+    grid-template-columns: 2.3fr 1fr 1fr 1fr 0.8fr 1.1fr;
+    gap: 0.5rem;
+    align-items:center;
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid var(--rule-faint);
+  }
+  .row:hover{ background: var(--panel); }
+  .cur-name{ font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 0.92rem; }
+  .cur-code{ color: var(--amber); font-size: 0.72rem; margin-right: 0.4em; }
+  .cur-countries{ color: var(--muted); font-size: 0.68rem; margin-top: 0.15rem; }
+  .rate-val{ font-size: 0.85rem; }
+  .pct{ font-size: 0.78rem; }
+  .pct.up{ color: var(--up); }
+  .pct.down{ color: var(--down); }
+  .pct.flat{ color: var(--muted); }
+  .spark{ display:block; }
+
+  .empty-state, .loading-state{ padding: 3rem 0.9rem; color: var(--muted); font-size: 0.85rem; text-align: center; }
+  .empty-state .sub{ display:block; margin-top:0.5rem; font-size:0.72rem; }
+
+  footer{ border-top: 1px solid var(--rule); padding: 1.5rem 1.5rem 2.2rem; }
+  footer .footer-inner{
+    max-width: 1040px; margin: 0 auto; font-size: 0.68rem; color: var(--muted);
+    display:flex; justify-content: space-between; flex-wrap: wrap; gap: 0.6rem;
+  }
+  footer a{ color: var(--amber); text-decoration: none; }
+  footer a:hover{ text-decoration: underline; }
+
+  @media (max-width: 720px){
+    .board-head{ display:none; }
+    .row{
+      grid-template-columns: 1fr; row-gap: 0.35rem;
+      padding: 0.9rem 0.8rem;
+    }
+    .row > div::before{ content: attr(data-label); display:block; color: var(--muted); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.1rem; }
+  }
+  @media (prefers-reduced-motion: reduce){ * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="eyebrow">Open-source FX monitoring · updates once daily</div>
+    <h1 class="display">Africa <span class="amber">FX</span> Board</h1>
+    <p class="dek">Daily USD, EUR and GBP exchange rates for every African currency, aggregated from a free public rate provider. Reference/market rates — check your central bank or bank for the exact rate on a transaction.</p>
+    <div class="meta-row">
+      <span><span id="live-dot"></span>Last updated: <span id="updated-at">—</span></span>
+      <span class="dot">·</span>
+      <span id="cur-count">— currencies</span>
+      <span class="dot">·</span>
+      <span id="next-update">—</span>
+    </div>
+  </div>
+</header>
+
+<div class="movers" id="movers"></div>
+
+<div class="controls">
+  <input id="search" type="text" placeholder="Filter by country, currency or code (e.g. Nigeria, Naira, NGN)…" autocomplete="off">
+  <select id="sort">
+    <option value="az">A–Z</option>
+    <option value="gainers">Biggest gainers (24h)</option>
+    <option value="losers">Biggest losers (24h)</option>
+  </select>
+  <span class="count-badge" id="count-badge"></span>
+</div>
+
+<main>
+  <div class="board-head">
+    <div>Currency</div>
+    <div>1 USD =</div>
+    <div>1 EUR =</div>
+    <div>1 GBP =</div>
+    <div>24h</div>
+    <div>14-day trend</div>
+  </div>
+  <div id="board">
+    <div class="loading-state">Loading rates…</div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span>Free-tier pipeline: GitHub Actions + GitHub Pages, no billing. <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener">Rates by ExchangeRate-API</a>.</span>
+    <span>Reference rates only — not an official central bank quote.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const boardEl = document.getElementById('board');
+  const moversEl = document.getElementById('movers');
+  const searchEl = document.getElementById('search');
+  const sortEl = document.getElementById('sort');
+  const countBadge = document.getElementById('count-badge');
+  const updatedAt = document.getElementById('updated-at');
+  const curCount = document.getElementById('cur-count');
+  const nextUpdate = document.getElementById('next-update');
+
+  let currencies = []; // [{code, name, countries, history, latest, pctChange}]
+
+  function fmtNumber(n){
+    if (n == null) return '—';
+    if (n >= 1000) return n.toLocaleString('en-US', { maximumFractionDigits: 1 });
+    if (n >= 1) return n.toLocaleString('en-US', { maximumFractionDigits: 3 });
+    return n.toPrecision(4);
+  }
+
+  function escapeHtml(str){
+    return (str || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+
+  function pctChange(history){
+    if (!history || history.length < 2) return null;
+    const prev = history[history.length - 2].usd;
+    const cur = history[history.length - 1].usd;
+    if (!prev) return null;
+    return ((cur - prev) / prev) * 100;
+  }
+
+  function sparkline(history){
+    const points = history.slice(-14).map(h => h.usd);
+    if (points.length < 2) return '';
+    const w = 100, h = 28, pad = 2;
+    const min = Math.min(...points), max = Math.max(...points);
+    const range = (max - min) || 1;
+    const stepX = (w - pad * 2) / (points.length - 1);
+    const coords = points.map((v, i) => {
+      const x = pad + i * stepX;
+      const y = pad + (h - pad * 2) * (1 - (v - min) / range);
+      return `${x.toFixed(1)},${y.toFixed(1)}`;
+    }).join(' ');
+    const rising = points[points.length - 1] >= points[0];
+    const color = rising ? 'var(--down)' : 'var(--up)'; // for FX, "currency depreciating" (usd rate rising) reads as bad -> down color; rate falling -> good -> up color
+    return `<svg class="spark" width="100" height="28" viewBox="0 0 ${w} ${h}"><polyline points="${coords}" fill="none" stroke="${color}" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>`;
+  }
+
+  function render(){
+    const q = searchEl.value.trim().toLowerCase();
+    const sortMode = sortEl.value;
+
+    let filtered = currencies.filter(c => {
+      if (!q) return true;
+      const blob = (c.code + ' ' + c.name + ' ' + c.countries.join(' ')).toLowerCase();
+      return blob.includes(q);
+    });
+
+    if (sortMode === 'az'){
+      filtered.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortMode === 'gainers'){
+      // "gainer" = local currency strengthening = usd rate falling
+      filtered.sort((a, b) => (a.pct ?? 0) - (b.pct ?? 0));
+    } else if (sortMode === 'losers'){
+      filtered.sort((a, b) => (b.pct ?? 0) - (a.pct ?? 0));
+    }
+
+    countBadge.textContent = filtered.length + ' shown of ' + currencies.length;
+
+    if (filtered.length === 0){
+      boardEl.innerHTML = '<div class="empty-state">No currencies match this filter.<span class="sub">Try clearing the search.</span></div>';
+      return;
+    }
+
+    boardEl.innerHTML = filtered.map(c => {
+      const latest = c.history[c.history.length - 1];
+      const pct = c.pct;
+      const pctClass = pct == null ? 'flat' : (pct > 0.02 ? 'down' : (pct < -0.02 ? 'up' : 'flat'));
+      // pct>0 means USD-per-unit rose i.e. local currency weakened -> shown as 'down' (bad) in red
+      const pctLabel = pct == null ? '—' : (pct > 0 ? '▲ ' : (pct < 0 ? '▼ ' : '· ')) + Math.abs(pct).toFixed(2) + '%';
+      return `<div class="row">
+        <div data-label="Currency">
+          <div class="cur-name"><span class="cur-code">${escapeHtml(c.code)}</span>${escapeHtml(c.name)}</div>
+          <div class="cur-countries">${escapeHtml(c.countries.join(', '))}</div>
+        </div>
+        <div class="rate-val" data-label="1 USD">${fmtNumber(latest.usd)}</div>
+        <div class="rate-val" data-label="1 EUR">${fmtNumber(latest.eur)}</div>
+        <div class="rate-val" data-label="1 GBP">${fmtNumber(latest.gbp)}</div>
+        <div class="pct ${pctClass}" data-label="24h">${pctLabel}</div>
+        <div data-label="14-day trend">${sparkline(c.history)}</div>
+      </div>`;
+    }).join('');
+  }
+
+  function renderMovers(){
+    const withPct = currencies.filter(c => c.pct != null);
+    if (withPct.length === 0){ moversEl.innerHTML = ''; return; }
+    const sorted = [...withPct].sort((a, b) => a.pct - b.pct); // most negative pct = strongest local currency = biggest gainer
+    const gainers = sorted.slice(0, 3);
+    const losers = sorted.slice(-3).reverse();
+
+    function card(c, isGainer){
+      const cls = isGainer ? 'up' : 'down';
+      const arrow = isGainer ? '▲' : '▼';
+      return `<div class="mover-card">
+        <div class="label">${isGainer ? 'Strengthening' : 'Weakening'} vs USD</div>
+        <div class="code">${escapeHtml(c.code)}</div>
+        <div class="pct ${cls}">${arrow} ${Math.abs(c.pct).toFixed(2)}%</div>
+      </div>`;
+    }
+
+    moversEl.innerHTML = gainers.map(c => card(c, true)).join('') + losers.map(c => card(c, false)).join('');
+  }
+
+  fetch('data/rates.json', { cache: 'no-store' })
+    .then(r => r.json())
+    .then(data => {
+      const map = data.currencies || {};
+      currencies = Object.keys(map).map(code => {
+        const entry = map[code];
+        return {
+          code,
+          name: entry.name,
+          countries: entry.countries || [],
+          history: entry.history || [],
+          pct: pctChange(entry.history || []),
+        };
+      }).filter(c => c.history.length > 0);
+
+      updatedAt.textContent = data.updated ? new Date(data.updated).toLocaleString('en-GB', { timeZone: 'UTC' }) + ' UTC' : 'never yet — waiting on first run';
+      curCount.textContent = currencies.length + ' currencies';
+      nextUpdate.textContent = data.next_update_utc ? ('next refresh: ' + data.next_update_utc) : '';
+
+      if (currencies.length === 0){
+        boardEl.innerHTML = '<div class="empty-state">No data yet.<span class="sub">The Actions workflow hasn\'t run yet — trigger it manually from the Actions tab, or wait for the next scheduled run.</span></div>';
+        return;
+      }
+
+      renderMovers();
+      render();
+    })
+    .catch(err => {
+      boardEl.innerHTML = '<div class="empty-state">Could not load rate data.<span class="sub">' + escapeHtml(err.message) + '</span></div>';
+    });
+
+  searchEl.addEventListener('input', render);
+  sortEl.addEventListener('change', render);
+})();
+</script>
+
+</body>
+</html>
