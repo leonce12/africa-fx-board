@@ -1,0 +1,45 @@
+name: Update Africa FX Board
+
+on:
+  schedule:
+    # Once daily. The source data itself only refreshes once per 24h,
+    # so running more often than this just re-fetches the same numbers.
+    - cron: "0 6 * * *"
+  workflow_dispatch: {}   # click "Run workflow" in the Actions tab to trigger manually
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-fx
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch and merge FX rates
+        run: python scripts/fetch_forex.py
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/rates.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update FX rates $(date -u +'%Y-%m-%d')"
+            git push
+          fi
