@@ -1,7 +1,650 @@
 {
-  "updated": null,
-  "snapshot_date": null,
-  "next_update_utc": null,
+  "updated": "2026-07-24T08:36:33.612210+00:00",
+  "snapshot_date": "2026-07-24",
+  "next_update_utc": "Sat, 25 Jul 2026 00:15:41 +0000",
   "provider": "https://www.exchangerate-api.com",
-  "currencies": {}
+  "currencies": {
+    "DZD": {
+      "name": "Algerian Dinar",
+      "countries": [
+        "Algeria"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 133.337165,
+          "eur": 151.830932,
+          "gbp": 177.700907
+        }
+      ],
+      "provider_code": "DZD"
+    },
+    "AOA": {
+      "name": "Angolan Kwanza",
+      "countries": [
+        "Angola"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 925.713994,
+          "eur": 1054.109843,
+          "gbp": 1233.716171
+        }
+      ],
+      "provider_code": "AOA"
+    },
+    "XOF": {
+      "name": "West African CFA Franc",
+      "countries": [
+        "Benin",
+        "Burkina Faso",
+        "Côte d'Ivoire",
+        "Guinea-Bissau",
+        "Mali",
+        "Niger",
+        "Senegal",
+        "Togo"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 576.047462,
+          "eur": 655.944821,
+          "gbp": 767.709113
+        }
+      ],
+      "provider_code": "XOF"
+    },
+    "BWP": {
+      "name": "Botswana Pula",
+      "countries": [
+        "Botswana"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 13.936938,
+          "eur": 15.869981,
+          "gbp": 18.574015
+        }
+      ],
+      "provider_code": "BWP"
+    },
+    "BIF": {
+      "name": "Burundian Franc",
+      "countries": [
+        "Burundi"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 2991.792126,
+          "eur": 3406.751491,
+          "gbp": 3987.216732
+        }
+      ],
+      "provider_code": "BIF"
+    },
+    "CVE": {
+      "name": "Cape Verdean Escudo",
+      "countries": [
+        "Cabo Verde"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 96.832374,
+          "eur": 110.262953,
+          "gbp": 129.050297
+        }
+      ],
+      "provider_code": "CVE"
+    },
+    "XAF": {
+      "name": "Central African CFA Franc",
+      "countries": [
+        "Cameroon",
+        "Central African Republic",
+        "Chad",
+        "Republic of the Congo",
+        "Equatorial Guinea",
+        "Gabon"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 576.047462,
+          "eur": 655.944821,
+          "gbp": 767.709113
+        }
+      ],
+      "provider_code": "XAF"
+    },
+    "KMF": {
+      "name": "Comorian Franc",
+      "countries": [
+        "Comoros"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 432.035596,
+          "eur": 491.958615,
+          "gbp": 575.781834
+        }
+      ],
+      "provider_code": "KMF"
+    },
+    "CDF": {
+      "name": "Congolese Franc",
+      "countries": [
+        "DR Congo"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 2281.300866,
+          "eur": 2597.715617,
+          "gbp": 3040.331882
+        }
+      ],
+      "provider_code": "CDF"
+    },
+    "DJF": {
+      "name": "Djiboutian Franc",
+      "countries": [
+        "Djibouti"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 177.721,
+          "eur": 202.370772,
+          "gbp": 236.852066
+        }
+      ],
+      "provider_code": "DJF"
+    },
+    "EGP": {
+      "name": "Egyptian Pound",
+      "countries": [
+        "Egypt"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 51.308541,
+          "eur": 58.424998,
+          "gbp": 68.379842
+        }
+      ],
+      "provider_code": "EGP"
+    },
+    "ERN": {
+      "name": "Eritrean Nakfa",
+      "countries": [
+        "Eritrea"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 15,
+          "eur": 17.080489,
+          "gbp": 19.990778
+        }
+      ],
+      "provider_code": "ERN"
+    },
+    "SZL": {
+      "name": "Eswatini Lilangeni",
+      "countries": [
+        "Eswatini"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 16.734257,
+          "eur": 19.055286,
+          "gbp": 22.302054
+        }
+      ],
+      "provider_code": "SZL"
+    },
+    "ETB": {
+      "name": "Ethiopian Birr",
+      "countries": [
+        "Ethiopia"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 160.809176,
+          "eur": 183.11329,
+          "gbp": 214.313365
+        }
+      ],
+      "provider_code": "ETB"
+    },
+    "GMD": {
+      "name": "Gambian Dalasi",
+      "countries": [
+        "Gambia"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 74.429172,
+          "eur": 84.752443,
+          "gbp": 99.193135
+        }
+      ],
+      "provider_code": "GMD"
+    },
+    "GHS": {
+      "name": "Ghanaian Cedi",
+      "countries": [
+        "Ghana"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 11.638844,
+          "eur": 13.253143,
+          "gbp": 15.511303
+        }
+      ],
+      "provider_code": "GHS"
+    },
+    "GNF": {
+      "name": "Guinean Franc",
+      "countries": [
+        "Guinea"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 8784.324038,
+          "eur": 10002.703315,
+          "gbp": 11707.031207
+        }
+      ],
+      "provider_code": "GNF"
+    },
+    "KES": {
+      "name": "Kenyan Shilling",
+      "countries": [
+        "Kenya"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 129.434935,
+          "eur": 147.387465,
+          "gbp": 172.500333
+        }
+      ],
+      "provider_code": "KES"
+    },
+    "LSL": {
+      "name": "Lesotho Loti",
+      "countries": [
+        "Lesotho"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 16.734257,
+          "eur": 19.055286,
+          "gbp": 22.302054
+        }
+      ],
+      "provider_code": "LSL"
+    },
+    "LRD": {
+      "name": "Liberian Dollar",
+      "countries": [
+        "Liberia"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 181.286942,
+          "eur": 206.431307,
+          "gbp": 241.604462
+        }
+      ],
+      "provider_code": "LRD"
+    },
+    "LYD": {
+      "name": "Libyan Dinar",
+      "countries": [
+        "Libya"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 6.410316,
+          "eur": 7.299422,
+          "gbp": 8.543147
+        }
+      ],
+      "provider_code": "LYD"
+    },
+    "MGA": {
+      "name": "Malagasy Ariary",
+      "countries": [
+        "Madagascar"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 4300.040894,
+          "eur": 4896.4534,
+          "gbp": 5730.744075
+        }
+      ],
+      "provider_code": "MGA"
+    },
+    "MWK": {
+      "name": "Malawian Kwacha",
+      "countries": [
+        "Malawi"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 1743.179138,
+          "eur": 1984.956801,
+          "gbp": 2323.167096
+        }
+      ],
+      "provider_code": "MWK"
+    },
+    "MRU": {
+      "name": "Mauritanian Ouguiya",
+      "countries": [
+        "Mauritania"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 40.122535,
+          "eur": 45.687501,
+          "gbp": 53.472045
+        }
+      ],
+      "provider_code": "MRU"
+    },
+    "MUR": {
+      "name": "Mauritian Rupee",
+      "countries": [
+        "Mauritius"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 47.241422,
+          "eur": 53.793772,
+          "gbp": 62.959517
+        }
+      ],
+      "provider_code": "MUR"
+    },
+    "MAD": {
+      "name": "Moroccan Dirham",
+      "countries": [
+        "Morocco"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 9.378265,
+          "eur": 10.679023,
+          "gbp": 12.498587
+        }
+      ],
+      "provider_code": "MAD"
+    },
+    "MZN": {
+      "name": "Mozambican Metical",
+      "countries": [
+        "Mozambique"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 63.587936,
+          "eur": 72.407536,
+          "gbp": 84.744819
+        }
+      ],
+      "provider_code": "MZN"
+    },
+    "NAD": {
+      "name": "Namibian Dollar",
+      "countries": [
+        "Namibia"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 16.734257,
+          "eur": 19.055286,
+          "gbp": 22.302054
+        }
+      ],
+      "provider_code": "NAD"
+    },
+    "NGN": {
+      "name": "Nigerian Naira",
+      "countries": [
+        "Nigeria"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 1368.257472,
+          "eur": 1558.033776,
+          "gbp": 1823.502054
+        }
+      ],
+      "provider_code": "NGN"
+    },
+    "RWF": {
+      "name": "Rwandan Franc",
+      "countries": [
+        "Rwanda"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 1471.512791,
+          "eur": 1675.610532,
+          "gbp": 1961.112328
+        }
+      ],
+      "provider_code": "RWF"
+    },
+    "STN": {
+      "name": "São Tomé & Príncipe Dobra",
+      "countries": [
+        "São Tomé and Príncipe"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 21.515378,
+          "eur": 24.499545,
+          "gbp": 28.673942
+        }
+      ],
+      "provider_code": "STN"
+    },
+    "SCR": {
+      "name": "Seychellois Rupee",
+      "countries": [
+        "Seychelles"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 14.025464,
+          "eur": 15.970786,
+          "gbp": 18.691995
+        }
+      ],
+      "provider_code": "SCR"
+    },
+    "SLE": {
+      "name": "Sierra Leonean Leone",
+      "countries": [
+        "Sierra Leone"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 24.364144,
+          "eur": 27.743433,
+          "gbp": 32.470546
+        }
+      ],
+      "provider_code": "SLE"
+    },
+    "SOS": {
+      "name": "Somali Shilling",
+      "countries": [
+        "Somalia"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 571.317649,
+          "eur": 650.558986,
+          "gbp": 761.405604
+        }
+      ],
+      "provider_code": "SOS"
+    },
+    "ZAR": {
+      "name": "South African Rand",
+      "countries": [
+        "South Africa"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 16.735361,
+          "eur": 19.056543,
+          "gbp": 22.303525
+        }
+      ],
+      "provider_code": "ZAR"
+    },
+    "SSP": {
+      "name": "South Sudanese Pound",
+      "countries": [
+        "South Sudan"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 4900.067105,
+          "eur": 5579.702805,
+          "gbp": 6530.410111
+        }
+      ],
+      "provider_code": "SSP"
+    },
+    "SDG": {
+      "name": "Sudanese Pound",
+      "countries": [
+        "Sudan"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 511.300827,
+          "eur": 582.217875,
+          "gbp": 681.420074
+        }
+      ],
+      "provider_code": "SDG"
+    },
+    "TZS": {
+      "name": "Tanzanian Shilling",
+      "countries": [
+        "Tanzania"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 2631.172938,
+          "eur": 2996.114688,
+          "gbp": 3506.612867
+        }
+      ],
+      "provider_code": "TZS"
+    },
+    "TND": {
+      "name": "Tunisian Dinar",
+      "countries": [
+        "Tunisia"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 2.951423,
+          "eur": 3.360783,
+          "gbp": 3.933416
+        }
+      ],
+      "provider_code": "TND"
+    },
+    "UGX": {
+      "name": "Ugandan Shilling",
+      "countries": [
+        "Uganda"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 3707.508002,
+          "eur": 4221.736633,
+          "gbp": 4941.064525
+        }
+      ],
+      "provider_code": "UGX"
+    },
+    "ZMW": {
+      "name": "Zambian Kwacha",
+      "countries": [
+        "Zambia"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 18.448542,
+          "eur": 21.007341,
+          "gbp": 24.586713
+        }
+      ],
+      "provider_code": "ZMW"
+    },
+    "ZWG": {
+      "name": "Zimbabwe Gold",
+      "countries": [
+        "Zimbabwe"
+      ],
+      "history": [
+        {
+          "date": "2026-07-24",
+          "usd": 26.6745,
+          "eur": 30.374234,
+          "gbp": 35.5496
+        }
+      ],
+      "provider_code": "ZWG"
+    }
+  }
 }
